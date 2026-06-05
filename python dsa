@@ -1,0 +1,217 @@
+# Linked list
+
+class Node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+head=Node(0)
+head.next=Node(1)
+head.next.next=Node(2)
+
+current=head
+while current:
+    print(current.data,end="=>")
+    current=current.next
+print("none")
+
+
+class node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+node1=node(0)
+node2=node(1)
+node3=node(2)
+node4=node(3)
+
+node1.next=node2
+node2.next=node3
+node3.next=node4
+
+head=node1
+current=head
+while current:
+    print(current.data,end="=>")
+    current=current.next
+print("none")
+
+#Output
+
+0=>1=>2=>none
+0=>1=>2=>3=>none
+
+____________________________________________________________
+
+# operations in linked list
+
+
+class node:
+    def __init__ (self,data):
+        self.data=data
+        self.next=None
+
+def insertAtStart(head,data):
+    new_node=node(data)
+    new_node.next=head
+    return new_node
+
+def insertAtEnd(head,data):
+    new_node=node(data)
+    if head is None:
+        return new-node
+    current=head
+    while current.next:
+        current=current.next
+    current.next=new_node
+    return head
+
+def deleteAtStart(head):
+    if head is None:
+        print("Error: singly inked list is empty")
+        return None
+    new_head=head.next
+    del head
+    return new_head
+
+def deleteAtEnd(head):
+    if head is None:
+        print("Error: singly inked list is empty")
+        return None
+    if head.next is None:
+        return None
+
+    current = head
+
+    while current.next.next is not None:
+        current = current.next
+
+    current.next = None
+    return head
+    
+def search(head, key):
+    temp = head
+    pos = 1
+
+    while temp:
+        if temp.data == key:
+            print("Element Found at Position", pos)
+            return
+
+        temp = temp.next
+        pos += 1
+
+    print("Element Not Found")
+
+def traverse(head):
+    current = head
+    while current:
+        print(current.data,end="=>")
+        current=current.next
+    print("none")
+
+head=None
+head=insertAtStart(head,4)
+head=insertAtStart(head,3)
+head=insertAtStart(head,2)
+head=insertAtStart(head,1)
+
+key = int(input("Enter element to search: "))
+search(head, key)
+
+#Output
+
+Enter element to search: 4
+Element Found at Position 4
+
+Enter element to search: 8
+Element Not Found
+
+_____________________________________________________________
+
+# reverse a Linked list
+
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class linkedlist:
+    def __init__(self):
+        self.head=None
+    def push(self,new_data):
+        new_node=node(new_data)
+        new_node.next=self.head
+        self.head=new_node
+    def printlist(self):
+        current=self.head
+        while(current):
+            print(current.data,end=" ")
+            current=current.next
+ll=linkedlist()
+ll.push(20)
+ll.push(4)
+ll.push(15)
+ll.push(85)
+
+print("given linked list")
+ll.printlist()
+
+prev=None
+curr=ll.head
+while(curr is not None):
+    next=curr.next
+    curr.next=prev
+    prev=curr
+    curr=next
+ll.head=prev
+
+print("\n Reversed linked list:")
+ll.printlist()
+
+#Output
+
+given linked list
+85 15 4 20 
+Reversed linked list:
+20 4 15 85 
+
+____________________________________________________________________
+
+# Doubly linked list
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+head = Node(10)
+head.next = Node(20)
+head.next.prev = head
+
+head.next.next = Node(30)
+head.next.next.prev = head.next
+
+head.next.next.next = Node(40)
+head.next.next.next.prev = head.next.next
+
+new_node = Node(50)
+current = head
+
+while current.next is not None:
+    current = current.next
+current.next = new_node
+new_node.prev = current
+
+head=head.next
+head.prev=None
+
+current = head
+while current is not None:
+    print(current.data, end=" <=> ")
+    current = current.next
+
+print("None")
+
+#Output
+
+20 <=> 30 <=> 40 <=> 50 <=> None
