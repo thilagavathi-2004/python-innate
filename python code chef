@@ -1,0 +1,520 @@
+1. The Block Game
+ 
+t = int(input())
+
+while t > 0:
+    n = input()
+    
+    rev = ""
+    i = len(n) - 1
+
+    while i >= 0:
+        rev += n[i]
+        i -= 1
+
+    if n == rev:
+        print("wins")
+    else:
+        print("loses")
+
+    t -= 1
+
+____________________________________________________
+
+2. Mario and Transformation
+
+t = int(input())
+
+while t > 0:
+    x = int(input())
+
+    if x % 3 == 0:
+        print("NORMAL")
+    elif x % 3 == 1:
+        print("HUGE")
+    else:
+        print("SMALL")
+
+    t -= 1
+
+____________________________________________________
+
+3. Simple Sorting - TSORT
+
+n = int(input())
+
+arr = []
+
+for i in range(n):
+    arr.append(int(input()))
+
+arr.sort()
+
+for num in arr:
+    print(num)
+
+_____________________________________________________
+
+4. Distinct Codes - DISTCODE
+
+t = int(input())
+
+while t > 0:
+    s = input().strip()
+
+    st = set()
+
+    for i in range(len(s) - 1):
+        st.add(s[i:i + 2])
+
+    print(len(st))
+    t -= 1
+
+______________________________________________________
+
+5. Wordle
+
+t = int(input())
+while t > 0:
+    s = input().strip()
+    g = input().strip()
+
+    ans = ""
+
+    for i in range(5):
+        if s[i] == g[i]:
+            ans += "G"
+        else:
+            ans += "B"
+
+    print(ans)
+    t -= 1
+
+______________________________________________________
+
+6. Can You Eat It - COMPCAND
+
+t = int(input())
+
+while t > 0:
+    n, k = map(int, input().split())
+
+    if n % k == 0:
+        print(n // k)
+    else:
+        print(-1)
+
+    t -= 1
+
+_______________________________________________________
+
+7. Bus Seat Numbering - SEATNUMBER
+
+t = int(input())
+
+while t > 0:
+    n = int(input())
+
+    if n <= 15:
+        if n <= 10:
+            print("Lower Double")
+        else:
+            print("Lower Single")
+    else:
+        pos = n - 15
+
+        if pos <= 10:
+            print("Upper Double")
+        else:
+            print("Upper Single")
+
+    t -= 1
+
+________________________________________________________
+
+8. Coins And Triangle
+
+import math
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    h = int((math.sqrt(1 + 8 * n) - 1) // 2)
+    print(h)
+
+________________________________________________________
+
+9. Compress the Video
+
+t = int(input())
+
+while t:
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    ans = 1
+
+    i = 1
+    while i < n:
+        if a[i] != a[i - 1]:
+            ans += 1
+        i += 1
+
+    print(ans)
+    t -= 1
+
+_________________________________________________________
+
+10. Group Assignment - GROUPASSGN
+
+t = int(input())
+
+while t > 0:
+    n, x = map(int, input().split())
+    print(2 * n + 1 - x)
+    t -= 1
+
+_________________________________________________________
+
+11. Group Assignment - GRPASSN
+
+t = int(input())
+
+while t > 0:
+    n = int(input())
+    p = list(map(int, input().split()))
+
+    freq = {}
+
+    for x in p:
+        freq[x] = freq.get(x, 0) + 1
+
+    possible = True
+
+    for k in freq:
+        if freq[k] % k != 0:
+            possible = False
+            break
+
+    if possible:
+        print("YES")
+    else:
+        print("NO")
+
+    t -= 1
+
+_________________________________________________________
+
+12. Sugar Limit - SULIM
+
+t = int(input())
+
+while t > 0:
+    n = int(input())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+
+    ans = 0
+
+    for L in range(101):
+        total = 0
+
+        for i in range(n):
+            if b[i] <= L and a[i] > 0:
+                total += a[i]
+
+        ans = max(ans, total - L)
+
+    print(ans)
+    t -= 1
+
+___________________________________________________________
+
+13. 50-50 Rule - NGRS
+
+t = int(input())
+
+for _ in range(t):
+    x, y = map(int, input().split())
+
+    if x < 50:
+        print("Z")
+    elif y < 50:
+        print("F")
+    else:
+        print("A")
+
+__________________________________________________________
+
+14. The Last Levels
+
+t = int(input())
+
+for _ in range(t):
+    x, y, z = map(int, input().split())
+
+    breaks = (x - 1) // 3
+    total_time = x * y + breaks * z
+
+    print(total_time)
+
+__________________________________________________________
+
+15. Problem Reviews
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    scores = list(map(int, input().split()))
+
+    good = True
+
+    for score in scores:
+        if score <= 4:
+            good = False
+            break
+
+    if good:
+        print("YES")
+    else:
+        print("NO")
+
+__________________________________________________________
+
+16. Elections in Chefland - ELECTN
+
+t = int(input())
+
+for _ in range(t):
+    n, x = map(int, input().split())
+    ages = list(map(int, input().split()))
+
+    count = 0
+
+    for age in ages:
+        if age >= x:
+            count += 1
+
+    print(count)
+
+_________________________________________________________
+
+17. Spoon in Matrix
+
+t = int(input())
+
+for _ in range(t):
+    r, c = map(int, input().split())
+
+    matrix = []
+    found = False
+
+    for _ in range(r):
+        matrix.append(input().lower())
+
+    # Check rows
+    for row in matrix:
+        if "spoon" in row:
+            found = True
+            break
+
+    # Check columns if not found in rows
+    if not found:
+        for col in range(c):
+            column = ""
+            for row in range(r):
+                column += matrix[row][col]
+
+            if "spoon" in column:
+                found = True
+                break
+
+    if found:
+        print("There is a spoon!")
+    else:
+        print("There is indeed no spoon!")
+
+_________________________________________________________
+
+18. Netflix
+
+T = int(input())
+
+for i in range(T):
+    A, B, C, X = map(int, input().split())
+    if (A + B >= X) or (A + C >= X) or (B + C >= X):
+        print("YES")
+    else:
+        print("NO")
+
+__________________________________________________________
+
+19. SEVENRINGS - 7 Rings
+
+t = int(input())
+
+while t > 0:
+    n, x = map(int, input().split())
+    total_bill = n * x
+
+    if 10000 <= total_bill <= 99999:
+        print("YES")
+    else:
+        print("NO")
+    t -= 1
+
+__________________________________________________________
+
+20. RCB vs CSK 
+
+X, Y = map(int, input().split())
+if X - Y >= 18:
+    print("RCB")
+else:
+    print("CSK")
+
+___________________________________________________________
+
+21. Economics Class - eco class
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+
+    s = list(map(int, input().split()))
+    d = list(map(int, input().split()))
+
+    count = 0
+
+    for i in range(n):
+        if s[i] == d[i]:
+            count += 1
+
+    print(count)
+
+___________________________________________________________
+
+22. indivisible - INDIVISIBLE
+
+t = int(input())
+
+for _ in range(t):
+    a, b, c = map(int, input().split())
+
+    k = 2
+    while k < 100:
+        if a % k != 0 and b % k != 0 and c % k != 0:
+            print(k)
+            break
+        k += 1
+
+__________________________________________________________
+
+23. Chef and Price Control - pricecon
+
+t = int(input())
+
+for _ in range(t):
+    n, k = map(int, input().split())
+    p = list(map(int, input().split()))
+
+    loss = 0
+
+    for price in p:
+        if price > k:
+            loss += price - k
+
+    print(loss)
+
+__________________________________________________________
+
+24. No Time to Wait - notime
+
+n, h, x = map(int, input().split())
+t = list(map(int, input().split()))
+
+ans = "NO"
+
+for i in t:
+    if x + i >= h:
+        ans = "YES"
+        break
+
+print(ans)
+
+________________________________________________________
+
+25. No Winner
+
+t = int(input())
+
+for _ in range(t):
+    A, B, C, M = map(int, input().split())
+
+    possible = False
+
+    for x in range(M + 1):
+        for y in range(M - x + 1):
+            z = M - x - y
+
+            a = A + x
+            b = B + y
+            c = C + z
+
+            if a == b or b == c or a == c:
+                possible = True
+                break
+
+        if possible:
+            break
+
+    print("YES" if possible else "NO")
+
+______________________________________________________
+
+26. Akash and Missing Class - chfclass
+
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+
+    ans = n // 7
+
+    if n % 7 >= 6:
+        ans += 1
+
+    print(ans)
+
+
+_____________________________________________________
+
+27. Money Double
+
+t = int(input())
+
+for _ in range(t):
+    x, y = map(int, input().split())
+
+    for _ in range(y):
+        if x < 1000:
+            x += 1000
+        else:
+            x *= 2
+
+    print(x)
+
+______________________________________________________
+
+28. Packing Books - BookPack
+
+t = int(input())
+
+for _ in range(t):
+    x, y, z = map(int, input().split())
+
+    boxes_per_shelf = (y + z - 1) // z
+    print(x * boxes_per_shelf)
