@@ -1,0 +1,392 @@
+# Class, Object and Methods
+
+class car:
+    def __init__(self,arr1,arr2):
+        self.arr01=arr1
+        self.arr02=arr2
+    def addi(self):
+        z=self.arr01+self.arr02
+        print(z)
+x=[1,2,3]
+y=[4,5,6]
+cars= car(x,y)
+cars.addi()
+
+#Output
+
+[1, 2, 3, 4, 5, 6]
+
+__________________________________________________________
+
+# Find odd and even by splitting integer
+
+class number:
+    def __init__(self,data):
+         self.data=data
+    def check(self):
+        firstnum = self.data// 100
+        lastnum = self.data% 100
+	print("\nUsing math operation\n")
+        if firstnum % 2 == 0:
+            print("First 2 digit number", firstnum, "is Even")
+        else:
+            print("First 2 digit number", firstnum, "is Odd")
+        if lastnum % 2 == 0:
+            print("Last 2 digit number", lastnum, "is Even")
+        else:
+            print("Last 2 digit number", lastnum, "is Odd")
+    def stringnum(self):
+        numstring=str(self.data)
+        firstnum=int(numstring[:2])
+        lastnum=int(numstring[2:])
+	print("\nUsing string slicing\n")
+        if firstnum % 2 == 0:
+            print("First 2 digit number", firstnum, "is Even")
+        else:
+            print("First 2 digit number", firstnum, "is Odd")
+        if lastnum % 2 == 0:
+            print("Last 2 digit number", lastnum, "is Even")
+        else:
+            print("Last 2 digit number", lastnum, "is Odd")
+obj = number(5562)
+obj.check()
+obj.stringnum()
+
+# Output
+
+Using math operation
+
+First 2 digit number 55 is Odd
+Last 2 digit number 62 is Even
+
+Using string slicing
+
+First 2 digit number 55 is Odd
+Last 2 digit number 62 is Even
+
+_________________________________________________________
+
+#Accessing mulitiple class using For loop
+
+class mca:
+    def student(self):
+        print("deva")
+class bca:
+    def student(self):
+        print("bala")
+class msc:
+    def student(self):
+        print("suriya")
+smvc = [mca(),bca(),msc()]
+for clg in smvc:
+    clg.student()
+
+#Output
+
+deva
+bala
+suriya
+
+________________________________________________________
+
+#Find common numbers in array from different class
+
+class MCA:
+    def values(self):
+        return [10, 20, 30, 40]
+class BCA:
+    def values(self):
+        return [50, 20, 30, 70]
+class MSC:
+    def values(self):
+        return [30, 20, 90, 100]
+clg = [MCA(), BCA(), MSC()]
+list1= []
+
+for obj in clg:
+    list1.append(obj.values())
+common = set(list1[0])
+
+for lst in list1[1:]:
+    common = common.intersection(lst)
+print("common value in the lists among all class:", list(common))
+
+#Output
+common value in the lists among all class: [20, 30]
+
+________________________________________________________________
+
+
+
+
+
+# Banking Program using class
+
+class BankAccount:
+    def __init__(self, account_holder, balance=0.0):
+        self.account_holder = account_holder
+        self.balance = balance
+
+    def deposit(self,amount):
+        if amount>0:
+            self.balance+=amount
+            print(f"deposite ${amount:.2f}. New balance: ${self.balance:.2f}")
+        return self.balance
+    def withdraw(self,amount):
+        if 0<amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrawn ${amount:.2f}. new balance: ${self.balance:.2f}")
+        else:
+            print("Inadequate Balance or invalid amount")
+        return self.balance
+    
+class SavingsAccount(BankAccount):
+    def __init__(self, account_holder, balance=0.0, interest_rate=0.02):
+        self.account_holder = account_holder
+        super().__init__(account_holder, balance)
+        self.interest_rate = interest_rate
+        
+    def add_interest(self):
+        interest = self.balance * self.interest_rate
+        self.balance += interest
+        print(f"added ${interest:.2f} interest. new balance: ${self.balance:.2f}")
+        
+class CheckingAccount(BankAccount):
+    def __init__(self, account_holder, balance=0.0, overdraft_limit=500):
+        super().__init__(account_holder, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def withdraw(self, amount):
+        if amount <= self.balance + self.overdraft_limit:
+            self.balance -= amount
+            print(f"Withdrawn ${amount:.2f} (overdraft active). new balance: $ {self.balance:.2f}")
+        else:
+            print("transaction declined. Overdraft Limit Exceeded")
+        return self.balance
+
+if __name__ == "__main__":
+    print("=== Savings Account ===")
+    s = SavingsAccount("Deva", 1000.0)
+    s.deposit(500)
+    s.add_interest()
+
+    print("\n=== Checking Account ===")
+    c = CheckingAccount("Bala", 100.0)
+    c.deposit(500)
+    c.withdraw(500)
+
+#Output
+
+=== Savings Account ===
+deposite $500.00. New balance: $1500.00
+added $30.00 interest. new balance: $1530.00
+
+=== Checking Account ===
+deposite $500.00. New balance: $600.00
+Withdrawn $500.00 (overdraft active). new balance: $ 100.00
+
+___________________________________________________________
+
+# Multiple Inheritence
+
+class father:
+    def demo1(self):
+        self.x="Son"
+        print("Magesh")
+class mother:
+    def demo2(self):
+        self.y="Suriya"
+        print("Balambigai")
+class daughter(father,mother):
+    def demo3(self):
+        print(self.x,self.y)
+obj = daughter()
+obj.demo1()
+obj.demo2()
+obj.demo3()
+
+#Output
+
+Magesh
+Balambigai
+Son Suriya
+
+________________________________________________________
+
+# Multiple Inheritence 2
+
+class Student:
+    def student_details(self):
+        self.name = input("Enter Student Name: ")
+        self.rollno = input("Enter Roll Number: ")
+
+
+class Sports:
+    def sports_details(self):
+        self.game = input("Enter Game Name: ")
+        self.score = int(input("Enter Score: "))
+
+
+class SportsDay(Student, Sports):
+    def display(self):
+        print("\n Sports Day Details ")
+        print("Name :", self.name)
+        print("Roll No :", self.rollno)
+        print("Game :", self.game)
+        print("Score :", self.score)
+        
+s = SportsDay()
+s.student_details()
+s.sports_details()
+s.display()
+
+# Output
+
+Enter Student Name: Suriya
+Enter Roll Number: 25PMC162
+Enter Game Name: Cricket
+Enter Score: 50
+
+ Sports Day Details 
+Name : Suriya
+Roll No : 25PMC162
+Game : Cricket
+Score : 50
+
+____________________________________________________
+
+# Multilevel Inheritence
+
+class grandpa:
+    def __init__ (self,grandpaname):
+        self.grandpaname=grandpaname
+class father(grandpa):
+    def __init__(self,grandpaname,fathername):
+        grandpa.__init__(self,grandpaname)
+        self.fathername=fathername
+class child(father):
+    def __init__(self,grandpaname,fathername,sonname):
+        father.__init__(self,grandpaname,fathername)
+        self.sonname=sonname
+    def display(self):
+        print(self.sonname,self.fathername,self.grandpaname)
+obj = child("deva","dinesh","kumar")
+obj.display()
+
+#Output
+
+kumar dinesh deva
+
+
+
+
+___________________________________________________________
+
+
+# Encapsulation (private)
+
+class student:
+    def __init__(self,name,number):
+        self.name=name
+        self.__number=number
+std = student("Dinesh",7339791231)
+print(std.name)
+print(std.number)
+
+#Output
+
+Dinesh
+ERROR!
+Traceback (most recent call last):
+  File "<main.py>", line 7, in <module>
+AttributeError: 'student' object has no attribute 'number'
+
+_____________________________________________________________
+
+# Reassign the private attribute
+
+class student:
+    def __init__(self,name,number):
+        self.name=name #public
+        self.__number=number #private
+    def demo(self):
+        self.__number=735428367
+std = student("Dinesh",7339791231)
+print(std.name)
+print(std.number)
+
+#Output
+
+Dinesh
+ERROR!
+Traceback (most recent call last):
+  File "<main.py>", line 9, in <module>
+AttributeError: 'student' object has no attribute 'number'
+
+_________________________________________________________
+
+# Protected attribute
+
+class student:
+    def __init__(self,name,number):
+        self.name=name
+        self._number=number #protected
+class clg(student):
+    def data(self):
+        print(self._number)    
+std = clg("Dinesh",7339791231)
+print(std.name)
+std.data()
+
+#Output
+
+Dinesh
+7339791231
+
+________________________________________________________
+
+#Even numbers by using class
+
+class EvenNumber:
+    def get_numbers(self):
+        self.numbers = list(map(int, input("Enter numbers separated by space:  ").split()))
+
+    def print_even(self):
+        print("Even numbers are:")
+        for num in self.numbers:
+            if num % 2 == 0:
+                print(num, end=" ")
+obj = EvenNumber()
+obj.get_numbers()
+obj.print_even()
+
+#Output
+
+Enter numbers separated by space:  25 20 15 10 5 2
+Even numbers are:
+20 10 2 
+
+__________________________________________________________
+
+#Abstraction
+
+from abc import ABC, abstractmethod
+class car(ABC):
+    def data(self):
+        print("say hello")
+    def xyz(self):
+        print("10")
+class BMW(car):
+    def data(self):
+        self.__x=10
+        return "say hai"
+    def xyz(self):
+        print("20")
+bmw=BMW()
+print(bmw.data())
+bmw.xyz()
+
+#Output
+
+say hai
+20
